@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Artjom Kivonen",
   "license": "ISC",
   "dependencies": {
     "react": "^19.1.0",

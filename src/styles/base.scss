@@ -1,0 +1,24 @@
+@use "./fonts.scss" as *;
+@use "./utils/variables.scss" as *;
+
+button,
+a {
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+html {
+  font-size: $font-size-base;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Nunito", Arial, sans-serif;
+  font-weight: 400;
+  line-height: $line-height-base;
+  color: $text-color-base;
+  background-color: $background-color;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
