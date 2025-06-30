@@ -1,4 +1,9 @@
-@use "./fonts";
-@use "./reset";
-@use "./base";
-@use "./utils/variables.scss" as *;
+@use "fonts";
+@use "reset";
+
+@use "utils/mixins" as *;
+@use "utils/variables" as *;
+
+@use "base";
+@use "../components/Header/Header";
+@use "../components/Hero/Hero";

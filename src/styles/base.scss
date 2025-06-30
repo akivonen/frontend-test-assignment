@@ -1,12 +1,6 @@
-@use "./fonts.scss" as *;
-@use "./utils/variables.scss" as *;
-
-button,
-a {
-  cursor: pointer;
-  border: none;
-  background: none;
-}
+@use "fonts.scss" as *;
+@use "utils/variables" as *;
+@use "utils/mixins" as *;
 
 html {
   font-size: $font-size-base;
@@ -21,4 +15,44 @@ body {
   background-color: $background-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1170px;
+  padding: 0 16px;
+
+  @include respond-to($md) {
+    padding: 0 32px;
+  }
+
+  @include respond-to($lg) {
+    padding: 0 60px;
+  }
+
+  @include respond-to($xl) {
+    padding: 0;
+  }
+}
+
+button,
+a {
+  cursor: pointer;
+  border: none;
+}
+
+h1 {
+  font-size: $font-size-l;
+  line-height: $line-height-l;
+  text-align: center;
+}
+
+.button {
+  background-color: $primary-color;
+  width: 100px;
+  height: 34px;
+  border-radius: 80px;
+  &--lg {
+    width: 120px;
+  }
 }

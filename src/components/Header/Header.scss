@@ -1,0 +1,14 @@
+@use "../../styles/utils/variables.scss" as *;
+@use "../../styles/utils/mixins" as *;
+
+.header {
+  background-color: #fff;
+  &__container {
+    @include flex(space-between, center, nowrap);
+    height: 60px;
+  }
+  &__nav {
+    @include flex(space-between, center, nowrap);
+    gap: 10px;
+  }
+}

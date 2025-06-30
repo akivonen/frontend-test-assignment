@@ -1,0 +1,17 @@
+@mixin flex(
+  $justify-content: flex-start,
+  $align-items: center,
+  $flex-direction: row,
+  $flex-wrap: wrap
+) {
+  display: flex;
+  justify-content: $justify-content;
+  align-items: $align-items;
+  flex-flow: $flex-direction $flex-wrap;
+}
+
+@mixin respond-to($min-width) {
+  @media screen and (min-width: $min-width) {
+    @content;
+  }
+}
