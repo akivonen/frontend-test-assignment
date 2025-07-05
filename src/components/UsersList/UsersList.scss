@@ -1,0 +1,20 @@
+@use '../../styles/utils/variables.scss' as *;
+@use '../../styles/utils/mixins.scss' as *;
+.user-card {
+  @include flex(flex-start, center, column);
+  border-radius: 10px;
+  padding: 20px;
+  gap: 20px;
+  background-color: $color-white;
+
+  &__img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  &__details {
+    @include flex(flex-start, center, column);
+    width: 100%;
+  }
+}

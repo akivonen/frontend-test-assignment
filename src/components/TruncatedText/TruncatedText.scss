@@ -1,0 +1,40 @@
+@use '../../styles/utils//variables.scss' as *;
+
+.truncated-text-wrapper {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+
+  &:hover .truncated-text__tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.truncated-text {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  cursor: default;
+  white-space: nowrap;
+  width: 100%;
+
+  &.truncated-text--truncated {
+    cursor: pointer;
+  }
+}
+
+.truncated-text__tooltip {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  left: 77px;
+  background-color: $color-black;
+  color: $color-white;
+  border-radius: 4px;
+  padding: 3px 16px;
+  transform: translateY(50%);
+  transition: opacity 0.2s ease;
+  z-index: 10;
+  white-space: nowrap;
+  pointer-events: none;
+}

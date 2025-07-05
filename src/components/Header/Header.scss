@@ -1,8 +1,8 @@
-@use "../../styles/utils/variables.scss" as *;
-@use "../../styles/utils/mixins" as *;
+@use '../../styles/utils/variables.scss' as *;
+@use '../../styles/utils/mixins' as *;
 
 .header {
-  background-color: #fff;
+  background-color: $color-white;
   &__container {
     @include flex(space-between, center, nowrap);
     height: 60px;

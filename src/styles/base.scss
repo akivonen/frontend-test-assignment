@@ -1,6 +1,6 @@
-@use "fonts.scss" as *;
-@use "utils/variables" as *;
-@use "utils/mixins" as *;
+@use 'fonts.scss' as *;
+@use 'utils/variables' as *;
+@use 'utils/mixins' as *;
 
 html {
   font-size: $font-size-base;
@@ -8,10 +8,10 @@ html {
 }
 
 body {
-  font-family: "Nunito", Arial, sans-serif;
+  font-family: 'Nunito', Arial, sans-serif;
   font-weight: 400;
   line-height: $line-height-base;
-  color: $text-color-base;
+  color: $color-black;
   background-color: $background-color;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

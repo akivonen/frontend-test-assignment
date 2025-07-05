@@ -10,6 +10,18 @@
   flex-flow: $flex-direction $flex-wrap;
 }
 
+@mixin grid(
+  $gap: 0,
+  $cols-count: auto-fill,
+  $size: auto,
+  $justify-content: center
+) {
+  display: grid;
+  gap: $gap;
+  grid-template-columns: repeat($cols-count, $size);
+  justify-content: $justify-content;
+}
+
 @mixin respond-to($min-width) {
   @media screen and (min-width: $min-width) {
     @content;
