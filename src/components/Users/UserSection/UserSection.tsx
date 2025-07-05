@@ -1,9 +1,9 @@
 import { User } from 'types';
-import getAllUsers from '../../api/users';
+import getAllUsers from '@api/users';
 import { useEffect, useState } from 'react';
-import UsersList from '../../components/UsersList/UsersList';
+import UserCard from '@components/Users/UserCard/UserCard';
 
-export default function Users() {
+export default function UserSection() {
   const [users, setUsers] = useState<User[]>([]);
   useEffect(() => {
     const getAllUsersAction = async () => {
@@ -20,7 +20,9 @@ export default function Users() {
       <h1>Working with GET request</h1>
       {users && (
         <ul className="users__list">
-          <UsersList users={users.slice(6, 12)} />
+          {users.slice(5, 11).map((user) => (
+            <UserCard key={user.id} user={user} />
+          ))}
         </ul>
       )}
     </section>

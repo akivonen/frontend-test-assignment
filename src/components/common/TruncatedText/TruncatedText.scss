@@ -1,4 +1,4 @@
-@use '../../styles/utils//variables.scss' as *;
+@use '@styles/utils/variables.scss' as *;
 
 .truncated-text-wrapper {
   position: relative;
@@ -27,6 +27,7 @@
   visibility: hidden;
   opacity: 0;
   position: absolute;
+  top: 21px;
   left: 77px;
   background-color: $color-black;
   color: $color-white;

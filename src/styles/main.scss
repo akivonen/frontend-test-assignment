@@ -7,6 +7,6 @@
 @use 'base';
 @use '../components/Header/Header';
 @use '../components/Hero/Hero';
-@use '../components/Users/Users';
-@use '../components/UsersList/UsersList';
-@use '../components/TruncatedText/TruncatedText';
+@use '../components/Users/UserSection/UserSection';
+@use '../components/Users/UserCard/UserCard';
+@use '../components/common/TruncatedText/TruncatedText';

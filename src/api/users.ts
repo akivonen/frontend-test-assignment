@@ -1,4 +1,4 @@
-import { handleError } from '../lib/utils';
+import { handleError } from '@src/lib/utils';
 import http from './http';
 import { User } from 'types';
 

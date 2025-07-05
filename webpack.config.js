@@ -19,6 +19,12 @@ module.exports = (env, argv) => {
     devtool: isProduction ? 'source-map' : 'eval-source-map',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      alias: {
+        '@src': path.resolve(__dirname, 'src'),
+        '@components': path.resolve(__dirname, 'src/components'),
+        '@styles': path.resolve(__dirname, 'src/styles'),
+        '@api': path.resolve(__dirname, 'src/api'),
+      },
     },
     module: {
       rules: [

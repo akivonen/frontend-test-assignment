@@ -1,8 +1,8 @@
-import TruncatedText from '../../components/TruncatedText/TruncatedText';
+import TruncatedText from '@components/common/TruncatedText/TruncatedText';
 import { User } from 'types';
 
-export default function UsersList({ users }: { users: User[] }) {
-  return users.map((user) => (
+export default function UserCard({ user }: { user: User }) {
+  return (
     <li key={user.id}>
       <div className="user-card">
         <img
@@ -18,5 +18,5 @@ export default function UsersList({ users }: { users: User[] }) {
         </div>
       </div>
     </li>
-  ));
+  );
 }

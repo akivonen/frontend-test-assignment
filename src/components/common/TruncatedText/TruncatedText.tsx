@@ -5,7 +5,7 @@ export default function TruncatedText({ text }: { text: string }) {
   const [isTruncated, setIsTruncated] = useState<boolean>(false);
 
   useEffect(() => {
-    const checkTruncation = (): void => {
+    const checkTruncation = () => {
       if (textRef.current) {
         setIsTruncated(
           textRef.current.scrollWidth > textRef.current.clientWidth

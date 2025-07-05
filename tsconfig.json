@@ -9,6 +9,12 @@
     "forceConsistentCasingInFileNames": true,
     "moduleResolution": "node",
     "baseUrl": "src",
+    "paths": {
+      "@src/*": ["*"],
+      "@components/*": ["components/*"],
+      "@styles/*": ["utils/*"],
+      "@api/*": ["api/*"]
+    },
     "outDir": "./dist/",
     "sourceMap": true
   },
