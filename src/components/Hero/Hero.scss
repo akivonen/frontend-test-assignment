@@ -2,7 +2,7 @@
 @use '@styles/utils/mixins' as *;
 
 .hero {
-  @include flex(flex-start, center, column);
+  @include flex(center, center);
   position: relative;
   background-image: url('../assets/images/pexels-alexandr-podvalny-1227513.jpeg');
   background-size: auto 164%;
@@ -11,7 +11,6 @@
   height: 500px;
   padding: 40px 16px;
   width: 100%;
-  text-align: center;
 
   @include respond-to($md) {
     background-size: 342% 164%;
@@ -39,6 +38,8 @@
   }
 
   &__content {
+    @include flex(center, center, column);
+    text-align: center;
     color: $color-white;
     z-index: 20;
     max-width: 380px;

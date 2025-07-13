@@ -5,8 +5,12 @@
 @use 'utils/variables' as *;
 
 @use 'base';
-@use '../components/Header/Header';
-@use '../components/Hero/Hero';
-@use '../components/Users/UserSection/UserSection';
-@use '../components/Users/UserCard/UserCard';
-@use '../components/common/TruncatedText/TruncatedText';
+@use '@components/Header/Header';
+@use '@components/Hero/Hero';
+@use '@components/Users/UserSection/UserSection';
+@use '@components/Users/UserCard/UserCard';
+@use '@components/common/TruncatedText/TruncatedText';
+@use '@components/common/TextInput/TextInput';
+@use '@components/common/RadioGroup/RadioGroup';
+@use '@components/common/FileInput/FileInput';
+@use '@components/SignUpForm/SignUpForm';

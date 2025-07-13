@@ -48,6 +48,7 @@ h1 {
 }
 
 .button {
+  @include flex(center, center);
   background-color: $primary-color;
   width: 100px;
   height: 34px;

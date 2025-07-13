@@ -1,0 +1,52 @@
+@use '@styles/utils/variables' as *;
+@use '@styles/utils/mixins' as *;
+
+.form-radio-group {
+  margin-top: 43px;
+
+  &__legend {
+    margin-bottom: 11px;
+  }
+  &__options-list {
+    @include flex(center, flex-start, column);
+    gap: 7px;
+  }
+  &__option {
+    @include flex(flex-start, center);
+    gap: 12px;
+    user-select: none;
+    cursor: pointer;
+
+    &:hover input ~ .form-radio-group__checkmark {
+      border-color: $secondary-color;
+    }
+
+    input {
+      @include sr-only;
+      cursor: pointer;
+      &:checked ~ .form-radio-group__checkmark::after {
+        display: block;
+      }
+      &:checked ~ .form-radio-group__checkmark {
+        border-color: $secondary-color;
+      }
+    }
+  }
+  &__checkmark {
+    @include flex(center, center);
+    width: 20px;
+    height: 20px;
+    border: $color-grey-100 solid 1px;
+    border-radius: 50%;
+    &::after {
+      content: '';
+      display: none;
+      top: 5px;
+      left: 5px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: $secondary-color;
+    }
+  }
+}

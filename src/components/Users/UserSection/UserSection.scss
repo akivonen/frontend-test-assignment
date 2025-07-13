@@ -3,15 +3,16 @@
 
 .users {
   margin-top: 140px;
-  text-align: center;
+  @include flex(center, center, column);
+  gap: 50px;
 
   &__list {
-    @include grid(16px, 1, minmax(328px, 1fr));
+    @include grid(20px, 1, minmax(328px, 1fr));
     justify-content: center;
-    margin-top: 50px;
     margin-inline: auto;
     @include respond-to($md) {
       grid-template-columns: repeat(2, minmax(344px, 1fr));
+      gap: 16px;
     }
     @include respond-to($lg) {
       grid-template-columns: repeat(3, minmax(282px, 3fr));
