@@ -67,7 +67,11 @@ export default function SignUpForm() {
   };
 
   return (
-    <section className="container sign-up" aria-label="Sign up form">
+    <section
+      id="sign-up"
+      className="container sign-up"
+      aria-label="Sign up form"
+    >
       <h2 className="h1">Working with POST request</h2>
       {serverError && (
         <div className="sign-up__error-message" role="alert">

@@ -1,4 +1,7 @@
+import useScrollTo from '@src/hooks/useScrollTo';
+
 export default function Hero() {
+  const { scrollToElement } = useScrollTo();
   return (
     <section className="container hero" aria-label="Hero">
       <div className="hero__content">
@@ -10,7 +13,11 @@ export default function Hero() {
           mind. They should also be excited to learn, as the world of Front-End
           Development keeps evolving.
         </p>
-        <button type="button" className="button hero__button">
+        <button
+          type="button"
+          className="button hero__button"
+          onClick={() => scrollToElement('#sign-up')}
+        >
           Sign up
         </button>
       </div>
