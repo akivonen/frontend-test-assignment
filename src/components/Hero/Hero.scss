@@ -2,15 +2,16 @@
 @use '@styles/utils/mixins' as *;
 
 .hero {
-  @include flex(center, center);
   position: relative;
-  background-image: url('../assets/images/pexels-alexandr-podvalny-1227513.jpeg');
+  @include flex(flex-start, center, column);
+  background-image: url('../assets/images/pexels-alexandr-podvalny-1227513-2560.webp');
   background-size: auto 164%;
   background-position: calc(50% - 10px) calc(100% + 3px);
   background-repeat: no-repeat;
   height: 500px;
   padding: 40px 16px;
   width: 100%;
+  text-align: center;
 
   @include respond-to($md) {
     background-size: 342% 164%;
@@ -33,13 +34,11 @@
     content: '';
     position: absolute;
     inset: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 10;
+    background-color: $color-overlay;
   }
 
   &__content {
-    @include flex(center, center, column);
-    text-align: center;
+    @include flex(flex-start, center, column);
     color: $color-white;
     z-index: 20;
     max-width: 380px;

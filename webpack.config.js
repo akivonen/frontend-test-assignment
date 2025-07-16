@@ -24,6 +24,7 @@ module.exports = (env, argv) => {
         '@components': path.resolve(__dirname, 'src/components'),
         '@styles': path.resolve(__dirname, 'src/styles'),
         '@api': path.resolve(__dirname, 'src/api'),
+        '@assets': path.resolve(__dirname, 'src/assets'),
       },
     },
     module: {
@@ -53,17 +54,10 @@ module.exports = (env, argv) => {
           use: ['@svgr/webpack'],
         },
         {
-          test: /\.(png|jpe?g|gif)$/i,
+          test: /\.(png|jpe?g|gif|webp)$/i,
           type: 'asset',
           generator: {
             filename: 'images/[name].[hash][ext]',
-          },
-        },
-        {
-          test: /\.(woff|woff2|eot|ttf|otf)$/i,
-          type: 'asset/resource',
-          generator: {
-            filename: 'fonts/[name][ext]',
           },
         },
         {

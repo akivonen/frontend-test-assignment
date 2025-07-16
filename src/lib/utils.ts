@@ -17,3 +17,14 @@ export const joinErrors = (
   [message, Object.values(fails).map((messages) => messages.join(' '))].join(
     ' '
   );
+
+export const formatPhone = (phone: string): string => {
+  const countryCode = phone.slice(0, 3);
+  const localCode = phone.slice(3, 6);
+  const restDigits = phone.slice(6);
+
+  return `${countryCode} (${localCode}) ${restDigits.slice(
+    0,
+    3
+  )} ${restDigits.slice(3, 5)} ${restDigits.slice(5)}`;
+};

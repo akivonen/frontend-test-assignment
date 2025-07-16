@@ -1,4 +1,6 @@
 import useScrollTo from '@src/hooks/useScrollTo';
+import heroImageWebp from '@assets/images/pexels-alexandr-podvalny-1227513.webp';
+import heroImageJpeg from '@assets/images/pexels-alexandr-podvalny-1227513.jpeg';
 
 export default function Hero() {
   const { scrollToElement } = useScrollTo();
