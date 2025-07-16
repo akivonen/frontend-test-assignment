@@ -13,4 +13,6 @@
 @use '@components/common/TextInput/TextInput';
 @use '@components/common/RadioGroup/RadioGroup';
 @use '@components/common/FileInput/FileInput';
+@use '@components/common/Preloader/Preloader';
+@use '@components/common/ErrorFallback/ErrorFallback';
 @use '@components/SignUpForm/SignUpForm';

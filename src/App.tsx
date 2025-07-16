@@ -1,17 +1,33 @@
-import SignupForm from './components/SignUpForm/SignUpForm';
+import SignUpForm from './components/SignUpForm/SignUpForm';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
-import Users from './components/Users/UserSection/UserSection';
+import UserSection from './components/Users/UserSection/UserSection';
+import DataWrapper from './components/DataWrapper';
+import { DataProvider } from './context/DataContext';
+import { ErrorBoundary } from 'react-error-boundary';
+import ErrroFallback from './components/common/ErrorFallback/ErrorFallback';
 
 export default function App() {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Users />
-        <SignupForm />
-      </main>
-    </>
+    <ErrorBoundary
+      FallbackComponent={ErrroFallback}
+      onError={(error, info) => {
+        console.log('App error:', {
+          error,
+          componentStack: info.componentStack,
+        });
+      }}
+    >
+      <DataProvider>
+        <Header />
+        <main role="main">
+          <Hero />
+          <DataWrapper>
+            <UserSection />
+            <SignUpForm />
+          </DataWrapper>
+        </main>
+      </DataProvider>
+    </ErrorBoundary>
   );
 }

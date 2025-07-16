@@ -1,40 +1,41 @@
-import { User } from 'types';
-import getAllUsers from '@api/users';
-import { useEffect, useState } from 'react';
+import { startTransition, useState } from 'react';
 import UserCard from '@components/Users/UserCard/UserCard';
-import { USERS_COUNT_IN_BLOCK as usersSpan } from '@src/constants/users';
+import { USERS_COUNT_IN_BLOCK as users_per_block } from '@src/constants/users';
+import useData from '@src/hooks/useData';
 
 export default function UserSection() {
-  const [users, setUsers] = useState<User[]>([]);
-  const [visibleUsersCount, setVisibleUsersCount] = useState<number>(usersSpan);
+  const { users, usersError } = useData();
+  const [visibleUsersCount, setVisibleUsersCount] =
+    useState<number>(users_per_block);
 
   const handleShowMore = () => {
-    if (visibleUsersCount < users.length) {
-      setVisibleUsersCount((prev) =>
-        prev + usersSpan <= users.length ? prev + usersSpan : users.length
-      );
-    }
-  };
-
-  useEffect(() => {
-    const getAllUsersAction = async () => {
-      const users = await getAllUsers();
-      if (users) {
-        setUsers(users);
+    startTransition(() => {
+      if (visibleUsersCount < users.length) {
+        setVisibleUsersCount((prev) =>
+          prev + users_per_block <= users.length
+            ? prev + users_per_block
+            : users.length
+        );
       }
-    };
-    getAllUsersAction();
-  }, []);
+    });
+  };
 
   return (
     <section id="users" className="container users" aria-label="Users list">
-      <h1>Working with GET request</h1>
-      {users && (
+      <h2 className="h1">Working with GET request</h2>
+      {usersError && (
+        <div className="users__error-message" role="alert">
+          <p>{usersError}</p>
+        </div>
+      )}
+      {users.length > 0 ? (
         <ul className="users__list">
           {users.slice(0, visibleUsersCount).map((user) => (
             <UserCard key={user.id} user={user} />
           ))}
         </ul>
+      ) : (
+        <p>No users found</p>
       )}
       {visibleUsersCount < users.length && (
         <button onClick={() => handleShowMore()} className="button button--lg">

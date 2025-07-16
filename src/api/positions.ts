@@ -1,15 +1,12 @@
-import { Position } from 'types';
+import { PositionsResponse } from '@src/types';
 import http from './http';
+import { handleError } from '@src/lib/utils';
 
-export default async function getPositions(): Promise<Position[]> {
+export default async function getAllPositions(): Promise<PositionsResponse> {
   try {
-    const response = await http.get('/positions');
-    if (!response.data.success) {
-      return [];
-      // throw new Error(`Failed to fetch positions: ${response.data.message}`);
-    }
-    return response.data.positions;
+    const response = await http.get<PositionsResponse>('/positions');
+    return response.data;
   } catch (error) {
-    throw new Error('Failed to fetch positions');
+    return handleError(error, 'getPositions');
   }
 }

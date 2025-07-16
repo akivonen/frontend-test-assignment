@@ -1,0 +1,23 @@
+@use '@styles/utils/variables.scss' as *;
+@use '@styles/utils/mixins' as *;
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.preloader {
+  @include flex(center, center);
+  padding: 100px;
+  width: 100%;
+  &__icon {
+    width: 48px;
+    height: 48px;
+    animation: spin 1.2s linear infinite;
+    will-change: transform;
+  }
+}

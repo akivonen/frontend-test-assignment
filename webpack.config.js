@@ -49,7 +49,11 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(png|jpe?g|gif|svg)$/i,
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
           type: 'asset',
           generator: {
             filename: 'images/[name].[hash][ext]',

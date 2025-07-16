@@ -1,0 +1,14 @@
+@use '@styles/utils/variables' as *;
+@use '@styles/utils/mixins' as *;
+
+.error-boundary {
+  @include flex(center, start, column);
+  margin-top: 100px;
+  padding: 1rem;
+  color: $color-red;
+  gap: 20px;
+
+  &__message {
+    white-space: pre-wrap;
+  }
+}

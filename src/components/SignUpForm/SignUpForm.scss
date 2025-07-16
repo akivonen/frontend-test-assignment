@@ -2,7 +2,22 @@
 @use '@styles/utils/mixins' as *;
 
 .sign-up {
+  position: relative;
   margin-top: 140px;
+
+  &__error-message {
+    position: absolute;
+    @include flex(center, center);
+    top: 50px;
+    width: 100%;
+    margin: auto;
+    color: $color-red;
+  }
+
+  &__no-positions-message {
+    margin-top: 50px;
+  }
+
   &__form {
     @include flex(center, flex-start, column);
     max-width: 380px;

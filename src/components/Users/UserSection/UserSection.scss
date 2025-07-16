@@ -2,9 +2,19 @@
 @use '@styles/utils/mixins.scss' as *;
 
 .users {
+  position: relative;
   margin-top: 140px;
   @include flex(center, center, column);
   gap: 50px;
+
+  &__error-message {
+    position: absolute;
+    @include flex(center, center);
+    top: 50px;
+    width: 100%;
+    margin: auto;
+    color: $color-red;
+  }
 
   &__list {
     @include grid(20px, 1, minmax(328px, 1fr));

@@ -1,10 +1,10 @@
-import companyLogo from '@src/assets/images/Logo.svg';
+import CompanyLogo from '@src/assets/images/Logo.svg';
 
 export default function Header() {
   return (
     <header className="header" role="banner">
       <div className="container header__container">
-        <img src={companyLogo} alt="Company Logo" />
+        <CompanyLogo />
         <nav className="header__nav">
           <button type="button" className="button">
             Users
