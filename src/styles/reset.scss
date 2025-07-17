@@ -58,3 +58,10 @@ fieldset {
   margin: 0;
   padding: 0;
 }
+
+button {
+  -webkit-appearance: none; // For Safari
+  -moz-appearance: none; // For Firefox
+  appearance: none;
+  -webkit-tap-highlight-color: transparent; // Remove iOs tap highlights
+}

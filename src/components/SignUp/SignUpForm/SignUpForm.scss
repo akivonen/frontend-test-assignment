@@ -27,10 +27,11 @@
   &__button {
     margin-top: 50px;
     margin-bottom: 100px;
+    color: $color-black !important;
 
     &:disabled {
       background-color: $color-grey-200;
-      color: $color-white;
+      color: $color-white !important;
       cursor: not-allowed;
     }
   }

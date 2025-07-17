@@ -12,5 +12,9 @@
   &__nav {
     @include flex(space-between, center, nowrap);
     gap: 10px;
+
+    .button {
+      color: $color-black !important;
+    }
   }
 }
