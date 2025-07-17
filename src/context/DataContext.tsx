@@ -17,15 +17,21 @@ type DataContextType = {
   setVisibleUsersCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
+// Provider component that fetches and supplies users and positions to its children
 export const DataContext = createContext<DataContextType | null>(null);
 
 export function DataProvider({ children }: { children: ReactNode }) {
+  // State to hold user and position data
   const [users, setUsers] = useState<User[]>([]);
   const [positions, setPositions] = useState<Position[]>([]);
+
+  // Loading and error states for async fetches
   const [isUsersLoading, setIsUsersLoading] = useState<boolean>(true);
   const [isPositionsLoading, setIsPositionsLoading] = useState<boolean>(true);
   const [usersError, setUsersError] = useState<string | null>(null);
   const [positionsError, setPositionsError] = useState<string | null>(null);
+
+  // State to track how many users are visible
   const [visibleUsersCount, setVisibleUsersCount] =
     useState<number>(users_per_block);
 

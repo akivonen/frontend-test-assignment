@@ -1,3 +1,4 @@
+// Flex layout helper
 @mixin flex(
   $justify-content: flex-start,
   $align-items: center,
@@ -10,6 +11,7 @@
   flex-flow: $flex-direction $flex-wrap;
 }
 
+// Grid layout helper
 @mixin grid(
   $gap: 0,
   $cols-count: auto-fill,
@@ -22,12 +24,14 @@
   justify-content: $justify-content;
 }
 
+// Media query helper
 @mixin respond-to($min-width) {
   @media screen and (min-width: $min-width) {
     @content;
   }
 }
 
+// Visually hides content while keeping it accessible to screen readers
 @mixin sr-only() {
   position: absolute;
   width: 1px;

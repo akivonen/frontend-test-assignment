@@ -12,14 +12,18 @@ export default function UserSection() {
     visibleUsersCount,
     setVisibleUsersCount,
   } = useData();
+
+  // useTransition allows to defer state update and avoid blocking UI
   const [isPending, startTransition] = useTransition();
 
   if (isUsersLoading || isPending) {
     return <Preloader />;
   }
 
+  // Handles logic for Show more Butotn click
   const handleShowMore = () => {
     startTransition(() => {
+      // Only increase visible count if ther a more users to show
       if (visibleUsersCount < users.length) {
         setVisibleUsersCount((prev) =>
           prev + users_per_block <= users.length

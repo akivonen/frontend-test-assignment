@@ -1,3 +1,4 @@
+// Handler unknown errors by logging and throwing a descriptive Error
 export const handleError = (error: unknown, context: string): never => {
   const message = `Error in ${context}`;
   console.error(message, error);
@@ -8,8 +9,10 @@ export const handleError = (error: unknown, context: string): never => {
   throw new Error(`An unexpected error occurred in ${context}`);
 };
 
+// Removes all non-digit chars
 export const filterNonDigits = (s: string): string => s.replace(/[^0-9]/g, '');
 
+// Joins a main error with a multiple field-specific errors
 export const joinErrors = (
   message: string,
   fails: Record<string, string[]>
@@ -18,6 +21,7 @@ export const joinErrors = (
     ' '
   );
 
+// Formats a phone number string to format as in template
 export const formatPhone = (phone: string): string => {
   const countryCode = phone.slice(0, 3);
   const localCode = phone.slice(3, 6);

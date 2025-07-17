@@ -1,10 +1,16 @@
 @use '@styles/utils/variables' as *;
 @use '@styles/utils/mixins' as *;
 
+// Hero section with background image and centered content
 .hero {
   position: relative;
   @include flex(flex-start, center, column);
   background-image: url('../assets/images/pexels-alexandr-podvalny-1227513-2560.webp');
+  /**
+    Attempted pixel-perfect image positioning.
+    Note: this may negatively affect performance on mobile(LCP).
+    Did not find a better approach yet.
+  **/
   background-size: auto 164%;
   background-position: calc(50% - 10px) calc(100% + 3px);
   background-repeat: no-repeat;
@@ -30,6 +36,7 @@
     background-position: center calc(100% + 211px);
   }
 
+  // Semi-transparent overlay on top of the background
   &::after {
     content: '';
     position: absolute;
