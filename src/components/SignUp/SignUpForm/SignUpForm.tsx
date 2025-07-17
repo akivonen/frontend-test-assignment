@@ -58,19 +58,17 @@ export default function SignUpForm() {
           setServerError('Failed to get token');
           return;
         }
-        console.log(user.photo);
-        // const response: UsersRegistrationResponse = await registerUser(
-        //   user,
-        //   tokenRes.token
-        // );
-        // if (!response.success) {
-        //   const errorMessage = response.fails
-        //     ? joinErrors(response.message, response.fails)
-        //     : response.message;
-        //   setServerError(errorMessage);
-        //   await refetchUsers();
-        //   return;
-        // }
+        const response: UsersRegistrationResponse = await registerUser(
+          user,
+          tokenRes.token
+        );
+        if (!response.success) {
+          const errorMessage = response.fails
+            ? joinErrors(response.message, response.fails)
+            : response.message;
+          setServerError(errorMessage);
+          return;
+        }
         setIsSignedUp(true);
         refetchUsers();
         setVisibleUsersCount(users_per_block);
