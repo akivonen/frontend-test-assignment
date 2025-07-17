@@ -51,7 +51,15 @@ module.exports = (env, argv) => {
           ],
         },
         {
+          test: /photo-cover\.svg$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'images/[name].[hash][ext]',
+          },
+        },
+        {
           test: /\.svg$/,
+          exclude: /photo-cover\.svg$/i,
           use: ['@svgr/webpack'],
         },
         {
