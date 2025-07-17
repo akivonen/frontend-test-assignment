@@ -9,6 +9,7 @@
   /**
     Attempted pixel-perfect image positioning.
     Note: this may negatively affect performance on mobile(LCP).
+    Using img with smaller resolution affects picture quality.
     Did not find a better approach yet.
   **/
   background-size: auto 164%;
