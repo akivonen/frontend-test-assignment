@@ -7,7 +7,7 @@
   @include flex(flex-start, center, column);
   background-image: url('../assets/images/pexels-alexandr-podvalny-1227513-2560.webp');
   /**
-    Attempted pixel-perfect image positioning.
+    Attempted pixel-perfect image positioning and zooming.
     Note: this may negatively affect performance on mobile(LCP).
     Using img with smaller resolution affects picture quality.
     Did not find a better approach yet.

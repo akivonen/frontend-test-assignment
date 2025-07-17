@@ -38,7 +38,7 @@ export const signUpSchema = z.object({
     .refine(async (file) => {
       try {
         const { width, height } = await getImageDimensions(file);
-        return width >= 90 && height >= 90;
+        return width >= 70 && height >= 70;
       } catch {
         return false;
       }
