@@ -3,14 +3,18 @@ import { getAllUsers } from '@src/api/users';
 import { joinErrors } from '@src/lib/utils';
 import { Position, PositionsResponse, User, UsersResponse } from '@src/types';
 import { createContext, ReactNode, useEffect, useState } from 'react';
+import { USERS_COUNT_IN_BLOCK as users_per_block } from '@src/constants/users';
 
 type DataContextType = {
   users: User[];
   positions: Position[];
   usersError: string | null;
   positionsError: string | null;
-  isLoading: boolean;
+  isUsersLoading: boolean;
+  isPositionsLoading: boolean;
   refetchUsers: () => Promise<void>;
+  visibleUsersCount: number;
+  setVisibleUsersCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const DataContext = createContext<DataContextType | null>(null);
@@ -18,14 +22,17 @@ export const DataContext = createContext<DataContextType | null>(null);
 export function DataProvider({ children }: { children: ReactNode }) {
   const [users, setUsers] = useState<User[]>([]);
   const [positions, setPositions] = useState<Position[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isUsersLoading, setIsUsersLoading] = useState<boolean>(true);
+  const [isPositionsLoading, setIsPositionsLoading] = useState<boolean>(true);
   const [usersError, setUsersError] = useState<string | null>(null);
   const [positionsError, setPositionsError] = useState<string | null>(null);
+  const [visibleUsersCount, setVisibleUsersCount] =
+    useState<number>(users_per_block);
 
   const fetchUsers = async () => {
     try {
       setUsersError(null);
-      setIsLoading(true);
+      setIsUsersLoading(true);
       const response: UsersResponse = await getAllUsers();
       if (response.success) {
         setUsers(response.users);
@@ -41,14 +48,14 @@ export function DataProvider({ children }: { children: ReactNode }) {
           : 'Unexpected error. Failed to fetch users.';
       setUsersError(errorMessage);
     } finally {
-      setIsLoading(false);
+      setIsUsersLoading(false);
     }
   };
 
   const fetchPositions = async () => {
     try {
       setPositionsError(null);
-      setIsLoading(true);
+      setIsPositionsLoading(true);
       const response: PositionsResponse = await getAllPositions();
       if (response.success) {
         setPositions(response.positions);
@@ -62,7 +69,7 @@ export function DataProvider({ children }: { children: ReactNode }) {
           : 'Unexpected error. Failed to fetch positions.';
       setPositionsError(errorMessage);
     } finally {
-      setIsLoading(false);
+      setIsPositionsLoading(false);
     }
   };
 
@@ -75,10 +82,13 @@ export function DataProvider({ children }: { children: ReactNode }) {
       value={{
         users,
         positions,
-        isLoading,
+        isUsersLoading,
+        isPositionsLoading,
         usersError,
         positionsError,
         refetchUsers: fetchUsers,
+        visibleUsersCount,
+        setVisibleUsersCount,
       }}
     >
       {children}

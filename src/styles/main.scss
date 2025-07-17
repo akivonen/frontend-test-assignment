@@ -15,4 +15,6 @@
 @use '@components/common/FileInput/FileInput';
 @use '@components/common/Preloader/Preloader';
 @use '@components/common/ErrorFallback/ErrorFallback';
-@use '@components/SignUpForm/SignUpForm';
+@use '@components/SignUp/SignUpSection/SignUpSection';
+@use '@components/SignUp/SignUpForm/SignUpForm';
+@use '@components/SignUp/SignUpSuccess/SignUpSuccess';

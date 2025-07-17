@@ -1,12 +1,22 @@
-import { startTransition, useState } from 'react';
+import { useTransition, useState } from 'react';
 import UserCard from '@components/Users/UserCard/UserCard';
-import { USERS_COUNT_IN_BLOCK as users_per_block } from '@src/constants/users';
 import useData from '@src/hooks/useData';
+import Preloader from '@src/components/common/Preloader/Preloader';
+import { USERS_COUNT_IN_BLOCK as users_per_block } from '@src/constants/users';
 
 export default function UserSection() {
-  const { users, usersError } = useData();
-  const [visibleUsersCount, setVisibleUsersCount] =
-    useState<number>(users_per_block);
+  const {
+    users,
+    usersError,
+    isUsersLoading,
+    visibleUsersCount,
+    setVisibleUsersCount,
+  } = useData();
+  const [isPending, startTransition] = useTransition();
+
+  if (isUsersLoading || isPending) {
+    return <Preloader />;
+  }
 
   const handleShowMore = () => {
     startTransition(() => {
@@ -35,7 +45,7 @@ export default function UserSection() {
           ))}
         </ul>
       ) : (
-        <p>No users found</p>
+        <p className="users__no-users-message">No users found</p>
       )}
       {visibleUsersCount < users.length && (
         <button onClick={() => handleShowMore()} className="button button--lg">

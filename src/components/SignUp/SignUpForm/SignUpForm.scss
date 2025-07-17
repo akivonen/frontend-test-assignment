@@ -1,0 +1,37 @@
+@use '@styles/utils/variables' as *;
+@use '@styles/utils/mixins' as *;
+
+.sign-up-form {
+  position: relative;
+  @include flex(center, flex-start, column);
+  max-width: 380px;
+  width: 100%;
+
+  &__error-message {
+    position: absolute;
+    @include flex(center, center);
+    top: 10px;
+    width: 100%;
+    margin: auto;
+    color: $color-red;
+  }
+
+  &__no-positions-message {
+    margin-top: 50px;
+  }
+
+  &__button-container {
+    @include flex(center, center);
+    width: 100%;
+  }
+  &__button {
+    margin-top: 50px;
+    margin-bottom: 100px;
+
+    &:disabled {
+      background-color: $color-grey-200;
+      color: $color-white;
+      cursor: not-allowed;
+    }
+  }
+}

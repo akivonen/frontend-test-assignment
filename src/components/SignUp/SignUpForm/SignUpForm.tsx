@@ -1,4 +1,4 @@
-import { useState, startTransition, useEffect } from 'react';
+import { useState, useTransition, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import TextInput from '@components/common/TextInput/TextInput';
 import RadioGroup from '@components/common/RadioGroup/RadioGroup';
@@ -11,16 +11,35 @@ import getToken from '@src/api/token';
 import { UserSignUpData, UsersRegistrationResponse } from '@src/types';
 import { registerUser } from '@src/api/users';
 import { joinErrors } from '@src/lib/utils';
+import Preloader from '../../common/Preloader/Preloader';
+import SignUpSuccess from '../SignUpSuccess/SignUpSuccess';
+import { USERS_COUNT_IN_BLOCK as users_per_block } from '@src/constants/users';
 
 export default function SignUpForm() {
-  const { positions, positionsError, refetchUsers } = useData();
+  const {
+    positions,
+    positionsError,
+    isPositionsLoading,
+    refetchUsers,
+    setVisibleUsersCount,
+  } = useData();
   const [serverError, setServerError] = useState<string | null>(null);
+  const [isSignedUp, setIsSignedUp] = useState<boolean>(false);
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     if (positionsError) {
       setServerError(positionsError);
     }
   }, [positionsError]);
+
+  if (isPositionsLoading || isPending) {
+    return <Preloader />;
+  }
+
+  if (isSignedUp) {
+    return <SignUpSuccess />;
+  }
 
   const initialValues: UserSignUpData = {
     name: '',
@@ -33,58 +52,53 @@ export default function SignUpForm() {
   const onSubmit = async (user: UserSignUpData) => {
     setServerError(null);
     startTransition(async () => {
-      // try {
-      const tokenRes = await getToken();
-      if (!tokenRes.success) {
-        setServerError('Failed to get token');
-        return;
+      try {
+        const tokenRes = await getToken();
+        if (!tokenRes.success) {
+          setServerError('Failed to get token');
+          return;
+        }
+        console.log(user.photo);
+        // const response: UsersRegistrationResponse = await registerUser(
+        //   user,
+        //   tokenRes.token
+        // );
+        // if (!response.success) {
+        //   const errorMessage = response.fails
+        //     ? joinErrors(response.message, response.fails)
+        //     : response.message;
+        //   setServerError(errorMessage);
+        //   await refetchUsers();
+        //   return;
+        // }
+        setIsSignedUp(true);
+        refetchUsers();
+        setVisibleUsersCount(users_per_block);
+      } catch (error) {
+        const errorMessage =
+          error instanceof Error
+            ? error.message
+            : 'Unexpected error occurred trying to register user';
+        setServerError(errorMessage);
       }
-      console.log(user);
-      // const response: UsersRegistrationResponse | undefined = await registerUser(
-      //   user,
-      //   tokenRes.token
-      // );
-      // if (!response) {
-      //   setServerError('Unexpected error occurred trying to register user');
-      //   return;
-      // }
-      // if (!response.success) {
-      //   const errorMessage = response.fails
-      //     ? joinErrors(response.message, response.fails)
-      //     : response.message;
-      //   setServerError(errorMessage);
-      //   await refetchUsers();
-      //   return;
-      // }
-      // } catch (error) {
-      //   const errorMessage =
-      //     error instanceof Error
-      //       ? error.message
-      //       : 'Unexpected error occurred trying to register user';
-      //   setServerError(errorMessage);
-      // }
     });
   };
 
   return (
-    <section
-      id="sign-up"
-      className="container sign-up"
-      aria-label="Sign up form"
-    >
+    <>
       <h2 className="h1">Working with POST request</h2>
-      {serverError && (
-        <div className="sign-up__error-message" role="alert">
-          <p>{serverError}</p>
-        </div>
-      )}
       <Formik
         initialValues={initialValues}
         validationSchema={toFormikValidationSchema(signUpSchema)}
         onSubmit={onSubmit}
       >
         {({ isValid, dirty, isSubmitting }) => (
-          <Form className="sign-up__form">
+          <Form className="sign-up-form">
+            {serverError && (
+              <div className="sign-up-form__error-message" role="alert">
+                <p>{serverError}</p>
+              </div>
+            )}
             <TextInput
               type="text"
               name="name"
@@ -107,9 +121,9 @@ export default function SignUpForm() {
               hint="+38 (XXX) XXX - XX - XX"
             />
             {positions.length > 0 ? (
-              <RadioGroup name="position" options={positions} />
+              <RadioGroup name="position_id" options={positions} />
             ) : (
-              <p className="sign-up__no-positions-message" role="alert">
+              <p className="sign-up-form__no-positions-message" role="alert">
                 No positions available
               </p>
             )}
@@ -119,10 +133,10 @@ export default function SignUpForm() {
               label="Upload your photo"
               acceptedFormats={ACCEPTED_IMAGE_TYPES}
             />
-            <div className="sign-up__form__button-container">
+            <div className="sign-up-form__button-container">
               <button
                 type="submit"
-                className="button sign-up__form__button"
+                className="button sign-up-form__button"
                 disabled={!(isValid && dirty) || isSubmitting}
               >
                 {isSubmitting ? 'Submitting...' : 'Sign up'}
@@ -131,6 +145,6 @@ export default function SignUpForm() {
           </Form>
         )}
       </Formik>
-    </section>
+    </>
   );
 }

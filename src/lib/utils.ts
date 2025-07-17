@@ -28,3 +28,22 @@ export const formatPhone = (phone: string): string => {
     3
   )} ${restDigits.slice(3, 5)} ${restDigits.slice(5)}`;
 };
+
+export const getImageDimensions = (
+  file: File
+): Promise<{ width: number; height: number }> => {
+  const imageUrl = URL.createObjectURL(file);
+  const img = new Image();
+
+  return new Promise<{ width: number; height: number }>((resolve, reject) => {
+    img.onload = () => {
+      resolve({ width: img.width, height: img.height });
+      URL.revokeObjectURL(imageUrl);
+    };
+    img.onerror = () => {
+      reject(new Error('Failed to load image'));
+      URL.revokeObjectURL(imageUrl);
+    };
+    img.src = imageUrl;
+  });
+};

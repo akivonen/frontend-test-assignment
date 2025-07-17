@@ -1,11 +1,11 @@
-import SignUpForm from './components/SignUpForm/SignUpForm';
+import SignUpForm from './components/SignUp/SignUpForm/SignUpForm';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import UserSection from './components/Users/UserSection/UserSection';
-import DataWrapper from './components/DataWrapper';
 import { DataProvider } from './context/DataContext';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrroFallback from './components/common/ErrorFallback/ErrorFallback';
+import SignUpSection from './components/SignUp/SignUpSection/SignUpSection';
 
 export default function App() {
   return (
@@ -22,10 +22,10 @@ export default function App() {
         <Header />
         <main role="main">
           <Hero />
-          <DataWrapper>
-            <UserSection />
+          <UserSection />
+          <SignUpSection>
             <SignUpForm />
-          </DataWrapper>
+          </SignUpSection>
         </main>
       </DataProvider>
     </ErrorBoundary>

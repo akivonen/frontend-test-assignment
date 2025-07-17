@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <header className="header" role="banner">
       <div className="container header__container">
-        <CompanyLogo />
+        <CompanyLogo aria-label="Company logo" />
         <nav className="header__nav">
           <button
             type="button"

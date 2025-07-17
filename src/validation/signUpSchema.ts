@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from '@src/constants/file';
+import { getImageDimensions } from '@src/lib/utils';
 
 const rfc2822EmailRegex =
   /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/;
@@ -32,5 +33,14 @@ export const signUpSchema = z.object({
     .refine(
       (file) => file.size <= MAX_FILE_SIZE,
       'The photo size must not be greater than 5 Mb'
-    ),
+    )
+    // image dimensions validation min 70px x 70px as in API docs
+    .refine(async (file) => {
+      try {
+        const { width, height } = await getImageDimensions(file);
+        return width >= 90 && height >= 90;
+      } catch {
+        return false;
+      }
+    }, 'Minimum size of photo 70x70px'),
 });
