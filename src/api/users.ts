@@ -38,7 +38,6 @@ export async function getAllUsers(): Promise<UsersResponse> {
       const users: User[] = response.data.users.sort(
         (a, b) => b.registration_timestamp - a.registration_timestamp
       );
-      console.log(users);
       return { ...response.data, users };
     }
     return response.data;
