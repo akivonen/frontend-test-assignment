@@ -10,6 +10,14 @@
     {
       "src": "/(.*)",
       "dest": "/dist/index.html"
+    },
+    {
+      "src": "/images/(.*)",
+      "dest": "/dist/images/$1"
+    },
+    {
+      "src": "/fonts/(.*)",
+      "dest": "/dist/fonts/$1"
     }
   ]
 }
