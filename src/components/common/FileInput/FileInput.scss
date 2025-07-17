@@ -28,6 +28,7 @@
     padding: 14px 15px;
     border: 1px solid $color-black;
     border-radius: 4px 0px 0px 4px;
+    color: $color-black;
     &--invalid {
       border-color: $color-red;
     }
