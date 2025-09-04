@@ -1,4 +1,5 @@
-import { useTransition, useState } from 'react';
+import styles from './UserSection.module.scss';
+import { useTransition } from 'react';
 import UserCard from '@components/Users/UserCard/UserCard';
 import useData from '@src/hooks/useData';
 import Preloader from '@src/components/common/Preloader/Preloader';
@@ -35,24 +36,24 @@ export default function UserSection() {
   };
 
   return (
-    <section id="users" className="container users" aria-label="Users list">
-      <h2 className="h1">Working with GET request</h2>
+    <section id="users" className={styles.users} aria-label="Users list">
+      <h2>Working with GET request</h2>
       {usersError && (
-        <div className="users__error-message" role="alert">
+        <div className={styles.usersErrorMessage} role="alert">
           <p>{usersError}</p>
         </div>
       )}
       {users.length > 0 ? (
-        <ul className="users__list">
+        <ul className={styles.usersList}>
           {users.slice(0, visibleUsersCount).map((user) => (
             <UserCard key={user.id} user={user} />
           ))}
         </ul>
       ) : (
-        <p className="users__no-users-message">No users found</p>
+        <p className={styles.usersNoUsersMessage}>No users found</p>
       )}
       {visibleUsersCount < users.length && (
-        <button onClick={() => handleShowMore()} className="button button--lg">
+        <button onClick={() => handleShowMore()} className={styles.usersButton}>
           Show more
         </button>
       )}

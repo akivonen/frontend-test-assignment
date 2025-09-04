@@ -1,3 +1,4 @@
+import styles from './TextInput.module.scss';
 import { useField } from 'formik';
 import { useState } from 'react';
 import { filterNonDigits } from '@src/lib/utils';
@@ -52,13 +53,11 @@ export default function TextInput({
     helpers.setValue(`${phonePrefix}${filterNonDigits(withoutPrefix)}`);
   };
   return (
-    <div className="form-field" role="group">
+    <div className={styles.formField} role="group">
       <label
-        className={`form-field__label ${
-          hasError ? 'form-field__label--invalid' : ''
-        } ${
-          isFocused || field.value?.length ? 'form-field__label--active' : ''
-        }`}
+        className={`${styles.formFieldLabel} ${
+          hasError ? styles.isInvalid : ''
+        } ${isFocused || field.value?.length ? styles.isActive : ''}`}
         htmlFor={name}
       >
         {label}
@@ -67,8 +66,8 @@ export default function TextInput({
         {...field}
         {...props}
         id={name}
-        className={`form-field__input ${
-          hasError ? 'form-field__input--invalid' : ''
+        className={`${styles.formFieldInput} ${
+          hasError ? styles.isInvalid : ''
         }`}
         onFocus={handleFocus}
         onBlur={handleBlur}
@@ -81,8 +80,8 @@ export default function TextInput({
       {(hasError || hint) && (
         <div
           id={`${name}-message`}
-          className={`form-field__message ${
-            hasError ? 'form-field__message--error' : ''
+          className={`${styles.formFieldMessage} ${
+            hasError ? styles.hasError : ''
           }`}
         >
           {hasError ? meta.error : hint}

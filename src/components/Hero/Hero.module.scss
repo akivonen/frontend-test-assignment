@@ -1,11 +1,9 @@
-@use '@styles/utils/variables' as *;
-@use '@styles/utils/mixins' as *;
-
 // Hero section with background image and centered content
 .hero {
+  @extend %container;
   position: relative;
   @include flex(flex-start, center, column);
-  background-image: url('../assets/images/pexels-alexandr-podvalny-1227513-2560.webp');
+  background-image: url('../../assets/images/pexels-alexandr-podvalny-1227513-2560.webp');
   /**
     Attempted pixel-perfect image positioning and zooming.
     Note: this may negatively affect performance on mobile(LCP).
@@ -57,6 +55,7 @@
   }
 
   &__button {
+    @extend %button;
     margin-top: 32px;
     color: $color-black !important;
   }

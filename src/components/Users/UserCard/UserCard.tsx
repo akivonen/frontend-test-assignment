@@ -1,3 +1,4 @@
+import styles from './UserCard.module.scss';
 import TruncatedText from '@components/common/TruncatedText/TruncatedText';
 import { User } from 'types';
 import { formatPhone } from '@src/lib/utils';
@@ -12,12 +13,12 @@ export default function UserCard({ user }: { user: User }) {
   };
   return (
     <li key={user.id}>
-      <div className="user-card">
+      <div className={styles.userCard}>
         {user.photo && !hasImageError ? (
           <img
             src={user.photo}
             alt={`${user.name} avatar`}
-            className="user-card__img"
+            className={styles.userCardImg}
             onError={handleImageError}
             loading="lazy"
           />
@@ -25,13 +26,13 @@ export default function UserCard({ user }: { user: User }) {
           <img
             src={PhotoPlaceholderUrl}
             alt="User avatar placeholder"
-            className="user-card__img"
+            className={styles.userCardImg}
             loading="lazy"
           />
         )}
 
         <TruncatedText text={user.name} />
-        <div className="user-card__details">
+        <div className={styles.userCardDetails}>
           <TruncatedText text={user.position} />
           <TruncatedText text={user.email} />
           <p>{formatPhone(user.phone)}</p>

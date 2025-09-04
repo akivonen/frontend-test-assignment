@@ -47,24 +47,24 @@ h1 {
   text-align: center;
 }
 
-.h1 {
-  font-size: $font-size-l;
-  line-height: $line-height-l;
-  text-align: center;
-}
+// .h1 {
+//   font-size: $font-size-l;
+//   line-height: $line-height-l;
+//   text-align: center;
+// }
 
-.button {
-  @include flex(center, center);
-  background-color: $primary-color;
-  width: 100px;
-  height: 34px;
-  border-radius: 80px;
-  color: $color-black;
+// .button {
+//   @include flex(center, center);
+//   background-color: $primary-color;
+//   width: 100px;
+//   height: 34px;
+//   border-radius: 80px;
+//   color: $color-black;
 
-  &:hover {
-    background-color: $color-yellow-100;
-  }
-  &--lg {
-    width: 120px;
-  }
-}
+//   &:hover {
+//     background-color: $color-yellow-100;
+//   }
+//   &--lg {
+//     width: 120px;
+//   }
+// }

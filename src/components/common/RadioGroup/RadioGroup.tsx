@@ -1,3 +1,4 @@
+import styles from './RadioGroup.module.scss';
 import { Position } from '@src/types';
 import { useField } from 'formik';
 
@@ -12,15 +13,16 @@ export default function RadioGroup({
   ...props
 }: RadioGroupProps) {
   const [field, meta, helpers] = useField(name);
+  const hasError = meta.touched && meta.error;
 
   return (
-    <fieldset className="form-radio-group">
-      <legend id={`${name}-legend`} className="form-radio-group__legend">
+    <fieldset className={styles.formRadioGroup}>
+      <legend id={`${name}-legend`} className={styles.formRadioGroupLegend}>
         Select your position
       </legend>
-      <div className="form-radio-group__options-list">
+      <div className={styles.formRadioGroupOptionList}>
         {options.map(({ id, name }) => (
-          <label key={id} className="form-radio-group__option">
+          <label key={id} className={styles.formRadioGroupOption}>
             <input
               {...props}
               type="radio"
@@ -28,15 +30,24 @@ export default function RadioGroup({
               value={id.toString()}
               checked={field.value === id}
               onChange={(e) => helpers.setValue(Number(e.target.value))}
+              aria-checked={field.value === id ? 'true' : 'false'}
+              role="radio"
             />
-            <span className="form-radio-group__checkmark"></span>
+            <span className={styles.formRadioGroupCheckmark}></span>
             {name}
           </label>
         ))}
       </div>
 
       {meta.touched && meta.error ? (
-        <div className="form-input__error">{meta.error}</div>
+        <div
+          className={`${styles.formRadioGroupMessage} ${
+            hasError ? styles.hasError : ''
+          }`}
+          role="alert"
+        >
+          {meta.error}
+        </div>
       ) : null}
     </fieldset>
   );

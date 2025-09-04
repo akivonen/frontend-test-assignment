@@ -5,7 +5,6 @@ import UserSection from './components/Users/UserSection/UserSection';
 import { DataProvider } from './context/DataContext';
 import { ErrorBoundary } from 'react-error-boundary';
 import ErrroFallback from './components/common/ErrorFallback/ErrorFallback';
-import SignUpSection from './components/SignUp/SignUpSection/SignUpSection';
 
 export default function App() {
   return (
@@ -23,9 +22,7 @@ export default function App() {
         <main role="main">
           <Hero />
           <UserSection />
-          <SignUpSection>
-            <SignUpForm />
-          </SignUpSection>
+          <SignUpForm />
         </main>
       </DataProvider>
     </ErrorBoundary>

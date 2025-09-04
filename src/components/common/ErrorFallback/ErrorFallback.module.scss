@@ -1,6 +1,3 @@
-@use '@styles/utils/variables' as *;
-@use '@styles/utils/mixins' as *;
-
 .error-boundary {
   @include flex(center, start, column);
   margin-top: 100px;
@@ -10,5 +7,9 @@
 
   &__message {
     white-space: pre-wrap;
+  }
+
+  &__button {
+    @extend %button;
   }
 }

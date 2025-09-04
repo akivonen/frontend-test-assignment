@@ -1,3 +1,4 @@
+import styles from './TruncatedText.module.scss';
 import { useEffect, useRef, useState } from 'react';
 
 export default function TruncatedText({ text }: { text: string }) {
@@ -19,10 +20,10 @@ export default function TruncatedText({ text }: { text: string }) {
   }, [text]);
 
   return (
-    <div className="truncated-text-wrapper">
+    <div className={styles.truncatedTextWrapper}>
       <p
-        className={`truncated-text ${
-          isTruncated ? 'truncated-text--truncated' : ''
+        className={`${styles.truncatedText} ${
+          isTruncated ? styles.isTruncated : ''
         }`}
         ref={textRef}
         title={isTruncated ? text : undefined}
@@ -32,7 +33,7 @@ export default function TruncatedText({ text }: { text: string }) {
       </p>
       {isTruncated && (
         <span
-          className="truncated-text__tooltip"
+          className={styles.truncatedTextTooltip}
           aria-hidden="true"
           role="tooltip"
         >

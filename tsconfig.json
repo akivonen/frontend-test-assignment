@@ -4,11 +4,12 @@
     "module": "ESNext",
     "jsx": "react-jsx",
     "strict": true,
+    "types": ["vite/client"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "baseUrl": "src",
+    "moduleResolution": "bundler",
+    "baseUrl": "./src",
     "paths": {
       "@src/*": ["*"],
       "@components/*": ["components/*"],
@@ -18,6 +19,6 @@
     "outDir": "./dist/",
     "sourceMap": true
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "vite.config.ts"],
   "exclude": ["node_modules"]
 }

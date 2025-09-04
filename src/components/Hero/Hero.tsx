@@ -1,10 +1,11 @@
+import styles from './Hero.module.scss';
 import useScrollTo from '@src/hooks/useScrollTo';
 
 export default function Hero() {
   const { scrollToElement } = useScrollTo();
   return (
-    <section className="container hero" aria-label="Hero">
-      <div className="hero__content">
+    <section className={`${styles.hero} `} aria-label="Hero">
+      <div className={styles.heroContent}>
         <h1>Test assignment for front-end developer</h1>
         <p>
           What defines a good front-end developer is one that has skilled
@@ -15,7 +16,7 @@ export default function Hero() {
         </p>
         <button
           type="button"
-          className="button hero__button"
+          className={styles.heroButton}
           onClick={() => scrollToElement('#sign-up')}
         >
           Sign up

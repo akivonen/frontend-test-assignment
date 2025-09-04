@@ -1,6 +1,6 @@
+import styles from './FileInput.module.scss';
 import { useField } from 'formik';
 import { useRef, useState } from 'react';
-import { z } from 'zod';
 
 type FileInputProps = {
   name: string;
@@ -30,19 +30,19 @@ export default function FileInput({
   };
 
   return (
-    <div className="form-file-input">
-      <label className="form-file-input__label" htmlFor={name}>
+    <div className={styles.formFileInput}>
+      <label className={styles.formFileInputLabel} htmlFor={name}>
         {label}
       </label>
       <div
-        className={`form-file-input__control ${
-          hasError ? 'form-file-input__control--invalid' : ''
+        className={`${styles.formFileInputControl} ${
+          hasError ? styles.isInvalid : ''
         }`}
       >
         <button
           type="button"
-          className={`form-file-input__button ${
-            hasError ? 'form-file-input__button--invalid' : ''
+          className={`${styles.formFileInputButton} ${
+            hasError ? styles.isInvalid : ''
           }`}
           onClick={handlePickFile}
           aria-label={`Choose a file for ${label}`}
@@ -50,8 +50,9 @@ export default function FileInput({
           Upload
         </button>
         <span
-          className={`form-file-input__filename ${
-            hasError ? 'form-file-input__filename--invalid' : ''
+          className={`
+            ${styles.formFileInputFilename} ${
+            hasError ? styles.isInvalid : ''
           }`}
         >{`${field.value?.name || 'Upload your photo'}`}</span>
       </div>
@@ -62,12 +63,12 @@ export default function FileInput({
         accept={acceptedFormats.join(', ')}
         ref={fileInputRef}
         onChange={handleFileChange}
-        className="form-file-input__input"
+        className={styles.formFileInputNativeInput}
         aria-describedby={describedBy}
         aria-invalid={hasError ? 'true' : 'false'}
       />
       {hasError && (
-        <div id={`${name}-message`} className="form-file-input__message">
+        <div id={`${name}-message`} className={styles.formFileInputMessage}>
           {meta.error}
         </div>
       )}

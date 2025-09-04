@@ -1,11 +1,13 @@
-@use '@styles/utils/variables.scss' as *;
-@use '@styles/utils/mixins.scss' as *;
-
 .users {
+  @extend %container;
   @include flex(center, center, column);
   position: relative;
   margin-top: 140px;
   gap: 50px;
+
+  h2 {
+    @extend %h1;
+  }
 
   &__error-message {
     position: absolute;
@@ -35,5 +37,9 @@
   &__no-users-message {
     margin-top: 100px;
     text-align: center;
+  }
+
+  &__button {
+    @extend %button-lg;
   }
 }

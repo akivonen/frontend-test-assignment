@@ -1,3 +1,4 @@
+import styles from './ErrorFallback.module.scss';
 import { FallbackProps } from 'react-error-boundary';
 
 export default function ErrroFallback({
@@ -5,15 +6,15 @@ export default function ErrroFallback({
   resetErrorBoundary,
 }: FallbackProps) {
   return (
-    <div role="alert" className="error-boundary">
+    <div role="alert" className={styles.ErrorBoundary}>
       <p>Something went wrong</p>
       <p className="">{error.message}</p>
-      <pre className="error-boundary__message">
+      <pre className={styles.ErrorBoundaryMessage}>
         {process.env.NODE_ENV === 'development' && error.stack}
       </pre>
       <button
         type="button"
-        className="button error-boundary__button"
+        className={styles.errorBoundaryButton}
         onClick={resetErrorBoundary}
       >
         Try again

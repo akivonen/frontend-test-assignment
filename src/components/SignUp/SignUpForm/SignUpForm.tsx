@@ -1,3 +1,4 @@
+import styles from './SignUpForm.module.scss';
 import { useState, useTransition, useEffect } from 'react';
 import { Formik, Form } from 'formik';
 import TextInput from '@components/common/TextInput/TextInput';
@@ -83,17 +84,17 @@ export default function SignUpForm() {
   };
 
   return (
-    <>
-      <h2 className="h1">Working with POST request</h2>
+    <section id="sign-up" className={styles.signUp} aria-label="Sign up form">
+      <h2 className={styles.signUpHeading}>Working with POST request</h2>
       <Formik
         initialValues={initialValues}
         validationSchema={toFormikValidationSchema(signUpSchema)}
         onSubmit={onSubmit}
       >
         {({ isValid, dirty, isSubmitting }) => (
-          <Form className="sign-up-form">
+          <Form className={styles.signUpForm}>
             {serverError && (
-              <div className="sign-up-form__error-message" role="alert">
+              <div className={styles.signUpFormErrorMessage} role="alert">
                 <p>{serverError}</p>
               </div>
             )}
@@ -121,7 +122,7 @@ export default function SignUpForm() {
             {positions.length > 0 ? (
               <RadioGroup name="position_id" options={positions} />
             ) : (
-              <p className="sign-up-form__no-positions-message" role="alert">
+              <p className={styles.signUpFormNoPositionsMessage} role="alert">
                 No positions available
               </p>
             )}
@@ -131,10 +132,10 @@ export default function SignUpForm() {
               label="Upload your photo"
               acceptedFormats={ACCEPTED_IMAGE_TYPES}
             />
-            <div className="sign-up-form__button-container">
+            <div className={styles.signUpFormButtonContainer}>
               <button
                 type="submit"
-                className="button sign-up-form__button"
+                className={styles.signUpFormButton}
                 disabled={!(isValid && dirty) || isSubmitting}
               >
                 {isSubmitting ? 'Submitting...' : 'Sign up'}
@@ -143,6 +144,6 @@ export default function SignUpForm() {
           </Form>
         )}
       </Formik>
-    </>
+    </section>
   );
 }
